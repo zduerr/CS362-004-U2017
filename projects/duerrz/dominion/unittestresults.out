@@ -1,0 +1,134 @@
+---TEST Smithy---
+Test +3 Cards with only Smithy in hand: PASS
+Test +3 Cards with multiple cards in hand: PASS
+Test discard card that Smithy was discarded: FAIL
+Test correct Smithy card was discarded with multiple in hand: PASS
+File 'dominion.c'
+Lines executed:19.16% of 642
+Branches executed:17.75% of 417
+Taken at least once:13.91% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+---TEST Village---
+Test +1 Card with only Village in hand: PASS
+Test +1 Card with multiple cards in hand: PASS
+Test +2 Actions with zero actions left: PASS
+Test +2 Actions with 1 action left: FAIL
+Test +2 Actions with multiple action left: FAIL
+Test discard card that village was discarded: PASS
+Test correct village card was discarded with multiple in hand: PASS
+File 'dominion.c'
+Lines executed:19.78% of 642
+Branches executed:17.75% of 417
+Taken at least once:13.91% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+---TEST Great Hall---
+Test +1 Card with only Great Hall in hand: PASS
+Test +1 Card with multiple cards in hand: PASS
+Test +1 Action with zero actions left: PASS
+Test +1 Action with 1 action left: PASS
+Test +1 Actions with multiple action left: PASS
+File 'dominion.c'
+Lines executed:21.50% of 642
+Branches executed:23.26% of 417
+Taken at least once:14.63% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+---TEST Adventurer---
+Test two treasure cards are added to hand: FAIL
+Test two treasure cards are added to hand when deck does not have two remaining: FAIL
+Test non-treasure cards drawn were put in discard pile: FAIL
+Test drawn cards were removed from deck: FAIL
+Test copper is added when top two cards in deck  are copper: PASS
+Test silver is added when top two cards in deck are copper: PASS
+Test gold is added when top two cards in deck are copper: PASS
+File 'dominion.c'
+Lines executed:23.21% of 642
+Branches executed:25.66% of 417
+Taken at least once:16.31% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+---TEST isGameOver---
+1 Province card left: PASS
+More than 1 Province card left: PASS
+0 Province cards left: PASS
+0 supply piles depleted: PASS
+All supply piles depleted: PASS
+3 supply piles depleted: PASS
+less than 3 supply piles depleted: PASS
+more than 3 supply piles depleted: PASS
+File 'dominion.c'
+Lines executed:25.08% of 642
+Branches executed:27.58% of 417
+Taken at least once:18.23% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+---TEST kingdomCards---
+All different cards: PASS
+Sequential cards: PASS
+All the same card: PASS
+The first and last card in the list: PASS
+File 'dominion.c'
+Lines executed:26.95% of 642
+Branches executed:27.58% of 417
+Taken at least once:18.23% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+---TEST fullDeckCount---
+Empty hand, deck, and discard pile: PASS
+Card not one of the 10 chosen for the game: PASS
+Multiple copies of card found in hand: PASS
+Multiple copies of card found in deck: PASS
+Multiple copies of card found in discard: PASS
+Copies of card found in multiple locations: PASS
+No copies of card the card in any location: PASS
+File 'dominion.c'
+Lines executed:28.66% of 642
+Branches executed:30.46% of 417
+Taken at least once:21.10% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+---TEST getCost---
+Each card in the deck returns the proper value cost: 
+curse: PASS
+estate: PASS
+duchy: PASS
+province: PASS
+copper: PASS
+silver: PASS
+gold: PASS
+adventurer: PASS
+council_room: PASS
+feast: PASS
+gardens: PASS
+mine: PASS
+remodel: PASS
+smith: PASS
+village: PASS
+baron: PASS
+great_hall: PASS
+minion: PASS
+steward: PASS
+tribute: PASS
+ambassador: PASS
+cutpurse: PASS
+embargo: PASS
+outpost: PASS
+salvager: PASS
+sea_hag: PASS
+treasure_map: PASS
+File 'dominion.c'
+Lines executed:33.18% of 642
+Branches executed:37.17% of 417
+Taken at least once:27.58% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
