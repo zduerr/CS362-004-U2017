@@ -78,7 +78,7 @@ int main() {
     playAdventurer(player, state);
     printResult(1, (state->deck[player][0] == copper) && (state->deck[player][1] == copper));
 
-    printf("Test silver is added when top two cards in deck are copper: ");
+    printf("Test silver is added when top two cards in deck are silver: ");
     state = refreshGameState(state);
     initializeGame(2, k, 2, state);
     state->hand[player][0] = adventurer;
@@ -87,7 +87,7 @@ int main() {
     playAdventurer(player, state);
     printResult(1, (state->deck[player][0] == silver) && (state->deck[player][1] == silver));
 
-    printf("Test gold is added when top two cards in deck are copper: ");
+    printf("Test gold is added when top two cards in deck are gold: ");
     state = refreshGameState(state);
     initializeGame(2, k, 2, state);
     state->hand[player][0] = adventurer;

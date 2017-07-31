@@ -1,0 +1,11 @@
+---TEST Smithy---
+Test smithy was discarded: FAIL
+Test +3 cards added to hand: PASS
+Test other player deck unaffected: FAIL
+File 'dominion.c'
+Lines executed:21.65% of 642
+Branches executed:18.71% of 417
+Taken at least once:15.35% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+

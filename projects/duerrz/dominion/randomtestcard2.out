@@ -1,0 +1,12 @@
+---TEST Village---
+Test village was discarded: PASS
+Test +1 card added to hand: PASS
+Test other player deck unaffected: PASS
+Test +1 actions added for player: FAIL
+File 'dominion.c'
+Lines executed:22.27% of 642
+Branches executed:18.71% of 417
+Taken at least once:15.35% of 417
+No calls
+dominion.c:creating 'dominion.c.gcov'
+

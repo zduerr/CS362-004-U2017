@@ -57,5 +57,4 @@ int main() {
     state->numActions = 1;
     playSmithy(player, 1, state);
     printResult(1, state->hand[player][2] != smithy);
-
 }
