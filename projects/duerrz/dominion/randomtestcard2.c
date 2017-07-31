@@ -20,7 +20,7 @@ void printResult(int expected, int result) {
 }
 
 // populates the deck w/ n kingdom cards
-void populateDeck(int* k, int* deck, int n){
+void populateDeck(int *k, int *deck, int n) {
     int i;
     for (i = 0; i < n; i++) {
         deck[i] = k[i % 10];
@@ -28,7 +28,7 @@ void populateDeck(int* k, int* deck, int n){
 }
 
 // initializes the game and sets the decks to the sizes passed in
-void setState(struct gameState *G, int* k, int p, int deckCount, int discardCount, int handCount, int villagePos){
+void setState(struct gameState *G, int *k, int p, int deckCount, int discardCount, int handCount, int villagePos) {
     memset(G, 23, sizeof(struct gameState));
     initializeGame(2, k, 1, G);
 
@@ -59,20 +59,20 @@ int testVillageRemoved(int player, int villagePos, struct gameState *state) {
     return failed ? FAIL : PASS;
 }
 
-int testCardDrawn(int player, int villagePos, struct gameState *state){
+int testCardDrawn(int player, int villagePos, struct gameState *state) {
     int handCount = state->handCount[player];
     int failed = playVillage(player, villagePos, state);
     return (state->handCount[player] != handCount) || failed ? FAIL : PASS;
 }
 
-int testOtherPlayerCards(int player, int villagePos, struct gameState *state){
-    int otherPlayer = player ^ 1;
+int testOtherPlayerCards(int player, int villagePos, struct gameState *state) {
+    int otherPlayer = player ^1;
     int otherPlayerHandCount = state->handCount[otherPlayer];
     int failed = playVillage(player, villagePos, state);
     return (state->handCount[otherPlayer] != otherPlayerHandCount) || failed ? FAIL : PASS;
 }
 
-int testActionGained(int player, int villagePos, struct gameState *state){
+int testActionGained(int player, int villagePos, struct gameState *state) {
     int playerActions = state->numActions;
     int failed = playVillage(player, villagePos, state);
     return (state->numActions != playerActions + 2) || failed ? FAIL : PASS;
@@ -91,7 +91,7 @@ int main() {
     for (p = 0; p < 2; p++) {
         for (deckCount = 0; deckCount < 50; deckCount++) {
             discardCount = (deckCount < 10) ? 10 - deckCount : 0;
-            while (discardCount < 50){
+            while (discardCount < 50) {
                 for (handCount = 1; handCount < 5; handCount++) {
                     for (villagePos = 0; villagePos < handCount; villagePos++) {
                         setState(&G, noVillageK, p, deckCount, discardCount, handCount, villagePos);

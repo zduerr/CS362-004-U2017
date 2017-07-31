@@ -29,9 +29,10 @@ void printResult(int expected, int result) {
     printf(expected == result ? "PASS\n" : "FAIL\n");
 }
 
-int isMoney(int card){
+int isMoney(int card) {
     return (card == gold) || (card == silver) || (card == copper);
 }
+
 // populates the deck w/ n kingdom cards
 void populateDeck(int *k, int *deck, int n) {
     int i;
@@ -41,7 +42,7 @@ void populateDeck(int *k, int *deck, int n) {
 }
 
 // check if two decks have the same cards in them, ignoring all money cards
-int sameDeckIgnoringMoney(int* this, int*that, int sizeThis, int sizeThat){
+int sameDeckIgnoringMoney(int *this, int *that, int sizeThis, int sizeThat) {
     // see if both decks are all money
     int i;
     int thisAllMoney = 1;
@@ -52,7 +53,7 @@ int sameDeckIgnoringMoney(int* this, int*that, int sizeThis, int sizeThat){
     for (i = 0; i < sizeThat; ++i) {
         thatAllMoney &= isMoney(that[i]);
     }
-    if (thisAllMoney && thatAllMoney){
+    if (thisAllMoney && thatAllMoney) {
         return 1;
     }
 
@@ -60,18 +61,18 @@ int sameDeckIgnoringMoney(int* this, int*that, int sizeThis, int sizeThat){
     int thatIndex = 0;
 
     // sort the decks
-    qsort((void*) this, (size_t) sizeThis, sizeof(int), comp);
-    qsort((void*) that, (size_t) sizeThat, sizeof(int), comp);
+    qsort((void *) this, (size_t) sizeThis, sizeof(int), comp);
+    qsort((void *) that, (size_t) sizeThat, sizeof(int), comp);
 
     // compare the sorted cards, filtering out the money cards
     while (thisIndex < sizeThis && thatIndex < sizeThat) {
-        while(isMoney(this[thisIndex]) && (thisIndex < sizeThis)){
+        while (isMoney(this[thisIndex]) && (thisIndex < sizeThis)) {
             thisIndex += 1;
         }
-        while(isMoney(that[thatIndex]) && thatIndex < sizeThat){
+        while (isMoney(that[thatIndex]) && thatIndex < sizeThat) {
             thatIndex += 1;
         }
-        if (this[thisIndex] != that[thatIndex]){
+        if (this[thisIndex] != that[thatIndex]) {
             return 0;
         }
         thisIndex += 1;
@@ -79,7 +80,7 @@ int sameDeckIgnoringMoney(int* this, int*that, int sizeThis, int sizeThat){
     }
 
     // if we reached the end of both decks w/ matching cards, they are the same, ignoring money cards
-    return (thisIndex  == sizeThis) && (thatIndex  == sizeThat);
+    return (thisIndex == sizeThis) && (thatIndex == sizeThat);
 }
 
 // makes sure at least n money cards are in the deck.discard, adding them randomly
@@ -93,12 +94,12 @@ void addMoney(int *discard, int discardCount, int *deck, int deckCount, int n) {
     int i;
 
     for (i = 0; i < discardCount; i++) {
-        if (isMoney(discard[i])){
+        if (isMoney(discard[i])) {
             added += 1;
         }
     }
     for (i = 0; i < deckCount; i++) {
-        if (isMoney(deck[i])){
+        if (isMoney(deck[i])) {
             added += 1;
         }
     }
@@ -118,7 +119,6 @@ void addMoney(int *discard, int discardCount, int *deck, int deckCount, int n) {
             added += 1;
         }
     }
-
 }
 
 // returns the number of money cards in the hand
@@ -133,9 +133,7 @@ int getMoneyCount(int *hand, int n) {
 }
 
 // initializes the game and sets the decks to the sizes passed in, adds money coins
-void setState(struct gameState *G, int *k, int p, int deckCount, int discardCount, int handCount, int moneyCount,
-              int adPos) {
-
+void setState(struct gameState *G, int *k, int p, int deckCount, int discardCount, int handCount, int moneyCount, int adPos) {
     memset(G, 23, sizeof(struct gameState));
     initializeGame(2, k, 1, G);
 
@@ -199,28 +197,28 @@ int testHandSizeIncreased(int player, struct gameState *state) {
     return (endingHandCount != startingHandCount + 1) || failed ? FAIL : PASS;
 }
 
-int testNonMoneyCardsDiscarded(int player, struct gameState* state){
+int testNonMoneyCardsDiscarded(int player, struct gameState *state) {
     int startingCount = state->handCount[player];
-    int* startingHand = (int*) malloc(sizeof(int) * startingCount);
+    int *startingHand = (int *) malloc(sizeof(int) * startingCount);
     memcpy(startingHand, state->hand[player], sizeof(int) * state->handCount[player]);
 
     int failed = playAdventurer(player, state);
     int endingCount = state->handCount[player];
-    int* endingHand = (int*) malloc(sizeof(int) * endingCount);
+    int *endingHand = (int *) malloc(sizeof(int) * endingCount);
     memcpy(endingHand, state->hand[player], sizeof(int) * endingCount);
     int sameHand = sameDeckIgnoringMoney(startingHand, endingHand, startingCount, endingCount);
 
-    int result = !sameHand || failed ? FAIL: PASS;
+    int result = !sameHand || failed ? FAIL : PASS;
     free(startingHand);
     free(endingHand);
 
     return result;
 }
 
-int testDiscardedCardsReturnedToDiscardDeck(int player, struct gameState* state){
+int testDiscardedCardsReturnedToDiscardDeck(int player, struct gameState *state) {
     int i;
     int startingCount = state->deckCount[player] + state->discardCount[player];
-    int* startingDeck = (int*) malloc(sizeof(int) * startingCount);
+    int *startingDeck = (int *) malloc(sizeof(int) * startingCount);
     for (i = 0; i < state->deckCount[player]; i++) {
         startingDeck[i] = state->deck[player][i];
     }
@@ -230,7 +228,7 @@ int testDiscardedCardsReturnedToDiscardDeck(int player, struct gameState* state)
 
     int failed = playAdventurer(player, state);
     int endingCount = state->deckCount[player] + state->discardCount[player];
-    int* endingDeck = (int*) malloc(sizeof(int) * endingCount);
+    int *endingDeck = (int *) malloc(sizeof(int) * endingCount);
     for (i = 0; i < state->deckCount[player]; i++) {
         endingDeck[i] = state->deck[player][i];
     }
@@ -239,7 +237,7 @@ int testDiscardedCardsReturnedToDiscardDeck(int player, struct gameState* state)
     }
 
     int sameHand = sameDeckIgnoringMoney(startingDeck, endingDeck, startingCount, endingCount);
-    int result = !sameHand || failed ? FAIL: PASS;
+    int result = !sameHand || failed ? FAIL : PASS;
     free(startingDeck);
     free(endingDeck);
     return result;
@@ -282,7 +280,6 @@ int main() {
                             result.nonMoneyCardsDiscarded &= testNonMoneyCardsDiscarded(p, &G);
 
                             setState(&G, k, p, deckCount, discardCount, handCount, moneyCount, adventurerPos);
-
                             result.discardedCardsReturnedToDiscardDeck &= testDiscardedCardsReturnedToDiscardDeck(p, &G);
                         }
                     }

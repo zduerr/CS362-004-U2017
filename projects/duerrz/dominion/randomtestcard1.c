@@ -19,7 +19,7 @@ void printResult(int expected, int result) {
 }
 
 // populates the deck w/ n kingdom cards
-void populateDeck(int* k, int* deck, int n){
+void populateDeck(int *k, int *deck, int n) {
     int i;
     for (i = 0; i < n; i++) {
         deck[i] = k[i % 10];
@@ -27,7 +27,7 @@ void populateDeck(int* k, int* deck, int n){
 }
 
 // initializes the game and sets the decks to the sizes passed in
-void setState(struct gameState *G, int* k, int p, int deckCount, int discardCount, int handCount, int smithyPos){
+void setState(struct gameState *G, int *k, int p, int deckCount, int discardCount, int handCount, int smithyPos) {
     memset(G, 23, sizeof(struct gameState));
     initializeGame(2, k, 1, G);
 
@@ -58,14 +58,14 @@ int testSmithyRemoved(int player, int smithyPos, struct gameState *state) {
     return failed ? FAIL : PASS;
 }
 
-int testCardsDrawn(int player, int smithyPos, struct gameState *state){
+int testCardsDrawn(int player, int smithyPos, struct gameState *state) {
     int handCount = state->handCount[player];
     int failed = playSmithy(player, smithyPos, state);
     return (state->handCount[player] != handCount + 2) || failed ? FAIL : PASS;
 }
 
-int testOtherPlayerCards(int player, int smithyPos, struct gameState *state){
-    int otherPlayer = player ^ 1;
+int testOtherPlayerCards(int player, int smithyPos, struct gameState *state) {
+    int otherPlayer = player ^1;
     int otherPlayerHandCount = state->handCount[otherPlayer];
     int failed = playSmithy(player, smithyPos, state);
     return (state->handCount[otherPlayer] != otherPlayerHandCount) || failed ? FAIL : PASS;
@@ -84,7 +84,7 @@ int main() {
     for (p = 0; p < 2; p++) {
         for (deckCount = 0; deckCount < 50; deckCount++) {
             discardCount = (deckCount < 10) ? 10 - deckCount : 0;
-            while (discardCount < 50){
+            while (discardCount < 50) {
                 for (handCount = 1; handCount < 2; handCount++) {
                     for (smithyPos = 0; smithyPos < handCount; smithyPos++) {
                         setState(&G, noSmithyK, p, deckCount, discardCount, handCount, smithyPos);
