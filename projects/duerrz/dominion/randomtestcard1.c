@@ -91,7 +91,7 @@ int main() {
                         result.smithyRemoved &= testSmithyRemoved(p, smithyPos, &G);
 
                         setState(&G, k, p, deckCount, discardCount, handCount, smithyPos);
-                        result.smithyRemoved &= testCardsDrawn(p, smithyPos, &G);
+                        result.cardsDrawn &= testCardsDrawn(p, smithyPos, &G);
 
                         setState(&G, k, p, deckCount, discardCount, handCount, smithyPos);
                         result.otherPlayerCards &= testOtherPlayerCards(p, smithyPos, &G);
