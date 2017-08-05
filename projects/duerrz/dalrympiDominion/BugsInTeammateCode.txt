@@ -1,0 +1,81 @@
+######Bug Report 1 - dominion.c:754 int fSmithy(int, int, gameState*)######
+Title: Player hand count is incorrect after playing the Smithy card
+Date: 9/5/17
+Priority: High
+Version: Assignment-2 branch of dalrympi’s dominion fork
+Platform: macOS Sierra 10.12.6
+Is the bug reproducible?:  Yes
+Method used to identify the bug: Ran cardtest2.c and randomtestcard1.c unit test functions
+
+Steps to reproduce:
+- Initialize the game to any valid state
+- Assure the player in question has a smithy card in their hand
+- Record the hand count of the player with the smithy card
+- Call the fSmithy function passing the appropriate variables
+- Record the appropriate player hand count after calling the smithy card
+Expected Results:
+The player hand count increase my 2 when the Smithy card is played because 3 cards are drawn to the player card and the Smithy card is discarded.
+ 
+Actual Results: 
+The player hand count is increased by 3 when the Smithy card is played
+
+Potential Cause:
+The off by one error in player hand count may be cause by the player drawing 4 cards rather than 3 and properly discarding the Smithy card or the player is drawing 3 cards and not discarding the Smithy.  The unit tests indicate that the player is drawing 4 cards since the Smithy Discarded test passes.
+
+Suggested Fix:
+Review the code where the player cards are drawn in the fsmithy function to check for an off by one error in how many cards are drawn.
+
+Attachments:  Results in randomcardtest1.out and unittestresults.out. listed below
+
+(randomcardtest1.out)
+---TEST Smithy---
+Test smithy was discarded: PASS
+Test +3 cards added to hand: FAIL
+Test other player deck unaffected: PASS
+
+(unittestresults.out)
+---TEST Smithy---
+Test +3 Cards with only Smithy in hand: FAIL
+Test +3 Cards with multiple cards in hand: FAIL
+Test discard card that Smithy was discarded: PASS
+Test correct Smithy card was discarded with multiple in hand: PASS
+
+######Bug Report 2 - dominion.c:771 int fVillage(int, int, gameState*)######
+Title: The wrong player has a card discarded from their hand when village is played
+Date: 9/5/17
+Priority: High
+Version: Assignment-2 branch of dalrympi’s dominion fork
+Platform: macOS Sierra 10.12.6
+Is the bug reproducible?:  Yes
+Method used to identify the bug: Ran randomtestcard2.c unit test functions
+
+Steps to reproduce:
+- Initialize the game to any valid state
+- Assure the player 0 has a village card in their hand
+- Assure player 1 has at least 2 cards in thier hand
+- Assure that the village card in player 0’s hand is at position 1 in the player’s hand.
+- Record the cards currently in player 0 and player 1’s hands
+- Call the fVillage function passing the appropriate variables
+- Compare the cards currently in player 0 and player 1’s hand to prior to calling the village function
+- Note that player 1 has a different hand even though player 0 played the card
+
+Expected Results:
+Player 0 plays the Village card and the Village card should be removed from player 0’s hand
+ 
+Actual Results: 
+Player 1 has a card removed from their hand
+
+Potential Cause:
+The discard function called in village may have an error where the wrong player integer is used as a parameter for the function call
+
+Suggested Fix:
+Review the code where the discard function is called and make sure the correct player is being passed as a parameter.  Double check the discard function parameter list to make sure the function is being used properly in the village function.
+
+Attachments:  Results in randomcardtest2.out listed below:
+
+(randomcardtest1.out)
+---TEST Village---
+Test village was discarded: FAIL
+Test +1 card added to hand: FAIL
+Test other player deck unaffected: FAIL
+Test +1 actions added for player: PASS

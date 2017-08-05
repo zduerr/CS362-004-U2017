@@ -19,6 +19,10 @@ struct adventurerTestResult {
     int discardedCardsReturnedToDiscardDeck;
 };
 
+int playAdventurer(int player, struct gameState* state){
+    return fAdventurer(state, player);
+}
+
 int comp(const void *elementA, const void *elementB) {
     int *a = (int *) elementA;
     int *b = (int *) elementB;

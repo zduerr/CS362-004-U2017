@@ -1,10 +1,9 @@
----TEST Village---
-Test village was discarded: PASS
-Test +1 card added to hand: PASS
+---TEST Smithy---
+Test smithy was discarded: PASS
+Test +3 cards added to hand: FAIL
 Test other player deck unaffected: PASS
-Test +1 actions added for player: FAIL
 File 'dominion.c'
-Lines executed:22.27% of 642
+Lines executed:21.57% of 649
 Branches executed:18.71% of 417
 Taken at least once:15.35% of 417
 No calls

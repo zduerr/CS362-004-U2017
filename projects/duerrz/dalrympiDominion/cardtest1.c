@@ -15,6 +15,10 @@ void printResult(int expected, int result) {
     printf(expected == result ? "PASS\n" : "FAIL\n");
 }
 
+int playVillage(int player, int handPos, struct gameState* state){
+    return fVillage(state, player, handPos);
+}
+
 //int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 int main() {
     printf("---TEST Village---\n");

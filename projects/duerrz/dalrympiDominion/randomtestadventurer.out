@@ -5,12 +5,12 @@ Test other player deck unaffected: PASS
 Test cards added to player hand are money: FAIL
 Money added to player hand was removed from deck: FAIL
 Test +1 hand size for player (+2 money, -1 adventurer card): FAIL
-Cards added to hand that aren't money discarded from hand: FAIL
-Discarded cards are returned to discard pile: FAIL
+Cards added to hand that aren't money discarded from hand: PASS
+Discarded cards are returned to discard pile: PASS
 File 'dominion.c'
-Lines executed:24.45% of 642
-Branches executed:21.10% of 417
-Taken at least once:17.51% of 417
+Lines executed:25.12% of 649
+Branches executed:21.58% of 417
+Taken at least once:18.71% of 417
 No calls
 dominion.c:creating 'dominion.c.gcov'
 

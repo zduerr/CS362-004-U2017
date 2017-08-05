@@ -15,6 +15,10 @@ struct villageTestResult {
     int actionGained;
 };
 
+int playVillage(int player, int handPos, struct gameState* state){
+    return fVillage(state, player, handPos);
+}
+
 void printResult(int expected, int result) {
     printf(expected == result ? "PASS\n" : "FAIL\n");
 }

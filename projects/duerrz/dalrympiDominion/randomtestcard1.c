@@ -14,6 +14,10 @@ struct smithyTestResult {
     int otherPlayerCards;
 };
 
+int playSmithy(int player, int handPos, struct gameState* state){
+    return fSmithy(state, player, handPos);
+}
+
 void printResult(int expected, int result) {
     printf(expected == result ? "PASS\n" : "FAIL\n");
 }
